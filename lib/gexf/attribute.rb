@@ -4,9 +4,10 @@ class GEXF::Attribute
   STRING      = :string
   INTEGER     = :integer
   FLOAT       = :float
+  DOUBLE      = :double
   ANY_URI     = :anyURI
   LIST_STRING = :liststring
-  TYPES       = [ BOOLEAN, STRING, INTEGER, FLOAT, ANY_URI, LIST_STRING]
+  TYPES       = [ BOOLEAN, STRING, INTEGER, FLOAT, ANY_URI, LIST_STRING, DOUBLE]
 
   DYNAMIC     = :dynamic
   STATIC      = :static
@@ -65,6 +66,8 @@ class GEXF::Attribute
     when STRING, ANY_URI
       value.to_s
     when FLOAT
+      value.to_f if value.respond_to?(:to_f)
+    when DOUBLE
       value.to_f if value.respond_to?(:to_f)
     when INTEGER
       value.to_i if value.respond_to?(:to_i)
