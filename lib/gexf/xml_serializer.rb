@@ -1,7 +1,7 @@
 class GEXF::XmlSerializer
 
   GEXF_ATTRS = {
-    'xmlns'     => '"http://www.gexf.net/1.2draft',
+    'xmlns'     => 'http://www.gexf.net/1.2draft',
     'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
     'xsi'       => 'http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd',
     'version'   => '1.2'
@@ -33,7 +33,7 @@ private
       next if defined_attributes.empty?
 
       xml.attributes(:class => type.gsub(/s$/,'')) {
-        defined_attributes.map do |id, attr| 
+        defined_attributes.map do |id, attr|
           xml.attribute(attr.to_hash) {
             xml.default(attr.default) if attr.default
           }
@@ -79,7 +79,7 @@ private
     @document ||= build do |xml|
       xml.gexf(GEXF_ATTRS) do
         xml.graph(graph_attributes) do
-          build_attributes(xml) 
+          build_attributes(xml)
           build_nodes(xml)
           build_edges(xml)
         end
